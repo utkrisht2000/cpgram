@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: sugam-platform
+    env: node
+    plan: free
+    buildCommand: npm install && npm --prefix backend install && npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend run build
+    startCommand: node backend/dist/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OTP_SECRET
+        generateValue: true
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GROQ_BASE_URL
+        value: https://api.groq.com/openai/v1

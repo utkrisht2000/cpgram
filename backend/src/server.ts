@@ -45,6 +45,21 @@ app.use('/api/grievances', grievancesRouter);
 app.use('/api/officers', officersRouter);
 app.use('/api/chat', chatRouter);
 
+// Serve frontend static files in unified full-stack mode
+import path from 'path';
+import fs from 'fs';
+
+const frontendDistPath = path.resolve(__dirname, '../../frontend/dist');
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
 // Global Error Handler Middleware
 app.use(errorHandler);
 
