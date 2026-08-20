@@ -252,8 +252,8 @@ function handleStaticFallback<T>(endpoint: string, options: RequestInit = {}): T
     } as unknown as T;
   }
 
-  // Citizen OTP request fallback
-  if (endpoint === '/auth/citizen/otp/request') {
+  // Citizen OTP request fallback (supports /auth/citizen/request-otp and /auth/citizen/otp/request)
+  if (endpoint.includes('/request-otp') || endpoint.includes('/otp/request')) {
     return {
       message: 'Verification code generated for demonstration.',
       devOtp: '583693',
@@ -261,8 +261,8 @@ function handleStaticFallback<T>(endpoint: string, options: RequestInit = {}): T
     } as unknown as T;
   }
 
-  // Citizen OTP verify fallback
-  if (endpoint === '/auth/citizen/otp/verify') {
+  // Citizen OTP verify fallback (supports /auth/citizen/verify-otp and /auth/citizen/otp/verify)
+  if (endpoint.includes('/verify-otp') || endpoint.includes('/otp/verify')) {
     const body = options.body ? JSON.parse(options.body as string) : {};
     return {
       token: 'demo-citizen-session-token',
@@ -271,7 +271,7 @@ function handleStaticFallback<T>(endpoint: string, options: RequestInit = {}): T
         name: body.name || 'Ramesh Kumar',
         phone: body.phone || '9876543210',
         role: 'citizen',
-        preferred_language: body.preferredLanguage || 'en',
+        preferred_language: body.language || body.preferredLanguage || 'en',
       }
     } as unknown as T;
   }
@@ -360,6 +360,40 @@ function handleStaticFallback<T>(endpoint: string, options: RequestInit = {}): T
       confidence: 0.92,
       reasoningEn: 'The grievance mentions water contamination and pressure issues, which falls under Municipal Water Supply.',
       reasoningHi: 'शिकायत में जल आपूर्ति व प्रदूषण का उल्लेख है, जो नगर जल आपूर्ति विभाग के अंतर्गत आता है।'
+    } as unknown as T;
+  }
+
+  // Officer draft response fallback
+  if (endpoint.includes('/draft-response')) {
+    return {
+      draftResponse: 'Field inspection completed on-site. The department has initiated corrective maintenance, and resolution will be completed within the SLA timeline.',
+      actionSummary: 'Maintenance underway',
+      suggestedStatus: 'in_progress',
+      isWithinSlaPolicy: true,
+      slaDaysRemaining: 4,
+    } as unknown as T;
+  }
+
+  // Grievance status update fallback
+  if (endpoint.includes('/status')) {
+    return {
+      message: 'Status updated successfully.',
+      status: 'in_progress',
+    } as unknown as T;
+  }
+
+  // Grievance notes fallback
+  if (endpoint.includes('/notes')) {
+    return {
+      message: 'Internal departmental note added.',
+    } as unknown as T;
+  }
+
+  // Appeal submission & adjudication fallback
+  if (endpoint.includes('/appeal') || endpoint.includes('/adjudicate')) {
+    return {
+      message: 'Appeal action recorded successfully.',
+      status: 'submitted',
     } as unknown as T;
   }
 
