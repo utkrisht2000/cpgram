@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- SuGam Emblem: Clean geometric portal hexagon with rising civic pathway -->
+  <defs>
+    <linearGradient id="sugamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  
+  <g transform="translate(6, 4)">
+    <!-- Outer Shield / Hexagon Frame -->
+    <path d="M20 2 L38 12 L38 28 L20 38 L2 28 L2 12 Z" fill="url(#sugamGrad)" stroke="#1e3a8a" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Rising Pathway to Resolution -->
+    <path d="M12 28 L20 14 L28 28" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Central Focus Node -->
+    <circle cx="20" cy="12" r="3" fill="url(#accentGrad)" stroke="#ffffff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Typography: SuGam Wordmark -->
+  <text x="56" y="28" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-size="24" font-weight="800" fill="#0f172a" letter-spacing="-0.5">
+    Su<tspan fill="#0284c7">Gam</tspan>
+  </text>
+  <text x="57" y="39" font-family="'Inter', system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#64748b" letter-spacing="1.2">
+    GRIEVANCE REDRESSAL
+  </text>
+</svg>
