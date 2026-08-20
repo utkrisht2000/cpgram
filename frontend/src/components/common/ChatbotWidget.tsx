@@ -73,7 +73,7 @@ export const ChatbotWidget: React.FC = () => {
   };
 
   return (
-    <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 1000 }}>
+    <div className="chatbot-widget-container" style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1000 }}>
       {/* Floating Toggle Button */}
       {!isOpen && (
         <button
@@ -82,17 +82,17 @@ export const ChatbotWidget: React.FC = () => {
           className="btn btn-primary"
           style={{
             borderRadius: 'var(--radius-full)',
-            padding: '12px 20px',
+            padding: '12px 18px',
             boxShadow: 'var(--shadow-xl)',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '8px',
             border: '2px solid rgba(255, 255, 255, 0.2)',
           }}
           aria-label="Open SuGam Citizen Civic Assistant Chatbot"
         >
           <IconBot size={22} />
-          <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>
+          <span style={{ fontWeight: 700, fontSize: '0.92rem' }}>
             {language === 'hi' ? 'सुगम नागरिक सहायक' : 'SuGam Civic Assistant'}
           </span>
         </button>
@@ -101,11 +101,12 @@ export const ChatbotWidget: React.FC = () => {
       {/* Expanded Chat Window */}
       {isOpen && (
         <div
+          className="chatbot-window"
           style={{
             width: '380px',
-            maxWidth: 'calc(100vw - 32px)',
-            height: '540px',
-            maxHeight: 'calc(100vh - 100px)',
+            maxWidth: 'calc(100vw - 28px)',
+            height: '520px',
+            maxHeight: 'calc(100vh - 90px)',
             backgroundColor: 'var(--color-white)',
             borderRadius: 'var(--radius-xl)',
             boxShadow: 'var(--shadow-xl)',
